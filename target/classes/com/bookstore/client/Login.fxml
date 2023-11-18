@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1023.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="banner" layoutY="-11.0" prefHeight="126.0" prefWidth="1023.0" stylesheets="@application.css" />
+      <AnchorPane fx:id="loginPanel" layoutX="345.0" layoutY="157.0" prefHeight="341.0" prefWidth="334.0" stylesheets="@application.css">
+         <children>
+            <Label fx:id="headLabel" layoutX="22.0" layoutY="14.0" text="Zaloguj się" />
+            <Label layoutX="22.0" layoutY="106.0" styleClass="loginLabel" text="Nazwa użytkownika" />
+            <TextField layoutX="22.0" layoutY="133.0" prefHeight="28.0" prefWidth="290.0" promptText="Nazwa użytkownika" />
+            <Label layoutX="22.0" layoutY="183.0" styleClass="loginLabel" text="Hasło" />
+            <PasswordField layoutX="22.0" layoutY="210.0" prefHeight="28.0" prefWidth="290.0" promptText="Hasło" />
+            <Button fx:id="loginButton" layoutX="97.0" layoutY="269.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="141.0" text="Zaloguj się" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
