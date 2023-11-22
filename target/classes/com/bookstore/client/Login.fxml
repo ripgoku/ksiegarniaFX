@@ -6,18 +6,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1023.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.ClientController">
    <children>
-      <AnchorPane fx:id="banner" layoutY="-11.0" prefHeight="126.0" prefWidth="1023.0" stylesheets="@application.css" />
-      <AnchorPane fx:id="loginPanel" layoutX="345.0" layoutY="157.0" prefHeight="341.0" prefWidth="334.0" stylesheets="@application.css">
+      <AnchorPane maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0" styleClass="banner" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="headLabel" layoutX="22.0" layoutY="14.0" text="Zaloguj się" />
+            <Label ellipsisString="" layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" wrapText="true" />
+            <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="loginPanel" layoutX="346.0" layoutY="130.0" prefHeight="341.0" prefWidth="334.0">
+         <children>
+            <Label fx:id="whiteHeadLabel" layoutX="22.0" layoutY="14.0" text="Zaloguj się" />
             <Label layoutX="22.0" layoutY="106.0" styleClass="loginLabel" text="Nazwa użytkownika" />
             <TextField layoutX="22.0" layoutY="133.0" prefHeight="28.0" prefWidth="290.0" promptText="Nazwa użytkownika" />
             <Label layoutX="22.0" layoutY="183.0" styleClass="loginLabel" text="Hasło" />
             <PasswordField layoutX="22.0" layoutY="210.0" prefHeight="28.0" prefWidth="290.0" promptText="Hasło" />
-            <Button fx:id="loginButton" layoutX="97.0" layoutY="269.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="141.0" text="Zaloguj się" />
+            <Button layoutX="97.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginRequest" prefHeight="41.0" prefWidth="141.0" styleClass="confirmButton" text="Zaloguj się" />
          </children>
       </AnchorPane>
+      <Button layoutX="474.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchToRegister" text="Załóż konto" />
+      <Label fx:id="loginErrorLabel" layoutX="359.0" layoutY="537.0" />
    </children>
 </AnchorPane>

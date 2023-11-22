@@ -1,5 +1,22 @@
+/*Styles for every scene*/
 .root {
     -fx-background-color: #dddddd;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-family: Verdana;
+}
+
+.banner {
+    -fx-background-color: #ff0000;
+    -fx-width: 100%;
+}
+
+.bannerLogo {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 42px;
+    -fx-font-family: Gabriola;
 }
 
 .text-field {
@@ -7,6 +24,38 @@
     -fx-font-size: 14px;
 }
 
+.button:hover {
+    -fx-cursor: hand;
+}
+
+.blackHeadLabel {
+    -fx-font-size: 42px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
+.confirmButton {
+    -fx-font-size: 20px;
+    -fx-background-color: #cc0000;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #880000;
+    -fx-border-radius: 6px;
+}
+
+.confirmButton:hover {
+    -fx-background-color: #dd0000;
+    -fx-border-radius: 6px;
+}
+
+.confirmButton:pressed {
+    -fx-background-color: #aa0000;
+    -fx-border-width: 2px;
+}
+/*##########################################*/
+
+/*Styles for login scene*/
 .loginLabel {
     -fx-font-size: 16px;
     -fx-text-fill: #ffffff;
@@ -14,26 +63,32 @@
     -fx-font-weight: bold;
 }
 
-#banner {
-    -fx-background-color: #ff0000;
-}
-
 #loginPanel {
     -fx-background-color: #ff0000;
 }
 
-#headLabel {
+#whiteHeadLabel {
     -fx-font-size: 42px;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
 }
 
-#loginButton {
+#loginErrorLabel {
+    -fx-text-fill: #ff0000;
+    -fx-font-size: 14px;
+    -fx-font-family: Verdana;
+}
+/*##########################################*/
+
+/*Styles for register scene*/
+#backToLoginButton {
     -fx-font-size: 20px;
-    -fx-background-color: #cc0000;
+    -fx-background-color: rgba(0,0,0,0);
     -fx-text-fill: #ffffff;
+    -fx-padding: 0px;
 }
 
-#loginButton:hover {
-    -fx-background-color: #aa0000;
+#backToLoginButton:hover {
+    -fx-font-weight: bold;
 }
+/*##########################################*/
