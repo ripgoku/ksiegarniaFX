@@ -1,51 +1,36 @@
 package com.bookstore.server;
 
-import java.net.*;
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Objects;
 
 public class Server {
+    public Server (int port) throws IOException {
+        // listening to port
+        ServerSocket serverSocket = new ServerSocket(port);
 
-    private Socket socket;
-    private ServerSocket server;
-    private DataInputStream in;
+        // infinite loop for requests
+        while(true)
+        {
+            Socket clientSocket = null;
+            try {
+                clientSocket = serverSocket.accept();
+                System.out.println("Client connected: "+clientSocket);
 
-    public Server(int port) {
-        try {
-            server = new ServerSocket(port);
-            System.out.println("Server started!");
+                // obtaining input and out streams
+                DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
+                DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());
 
-            System.out.println("Waiting for a client ...");
+                Thread t = new ClientHandler(clientSocket, dis, dos);
 
-            socket = server.accept();
-            System.out.println("Client connected");
-
-            in = new DataInputStream(
-                    new BufferedInputStream(socket.getInputStream()));
-
-            String line = "";
-
-            // reads message from client until "Stop" is sent
-            while (!line.equals("Stop"))
-            {
-                try
-                {
-                    line = in.readUTF();
-                    System.out.println("<Client> " + line);
-
-                }
-                catch(IOException i)
-                {
-                    System.out.println(i);
-                }
+                t.start();
+            } catch (Exception e) {
+                Objects.requireNonNull(clientSocket).close();
+                e.printStackTrace();
             }
-            System.out.println("Closing connection");
-
-            // close connection
-            socket.close();
-            in.close();
-
-        } catch(IOException e) {
-            System.out.println(e);
         }
     }
 }

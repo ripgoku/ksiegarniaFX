@@ -1,14 +1,10 @@
-/*Styles for every scene*/
-.root {
-    -fx-background-color: #dddddd;
-}
-
+/* Styles for every scene */
 .label {
     -fx-font-size: 16px;
     -fx-font-family: Verdana;
 }
 
-.banner {
+#banner {
     -fx-background-color: #ff0000;
     -fx-width: 100%;
 }
@@ -53,9 +49,21 @@
     -fx-background-color: #aa0000;
     -fx-border-width: 2px;
 }
+
+#bannerButton {
+    -fx-font-size: 20px;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0px;
+    -fx-alignment: top_right;
+}
+
+#bannerButton:hover {
+    -fx-font-weight: bold;
+}
 /*##########################################*/
 
-/*Styles for login scene*/
+/* Styles for login scene */
 .loginLabel {
     -fx-font-size: 16px;
     -fx-text-fill: #ffffff;
@@ -80,15 +88,58 @@
 }
 /*##########################################*/
 
-/*Styles for register scene*/
-#backToLoginButton {
-    -fx-font-size: 20px;
-    -fx-background-color: rgba(0,0,0,0);
+/* Styles for login scene */
+.loginLabel {
+    -fx-font-size: 16px;
     -fx-text-fill: #ffffff;
-    -fx-padding: 0px;
+    -fx-font-family: Verdana;
+    -fx-font-weight: bold;
 }
 
-#backToLoginButton:hover {
+#loginPanel {
+    -fx-background-color: #ff0000;
+}
+
+#whiteHeadLabel {
+    -fx-font-size: 42px;
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
+}
+
+#loginErrorLabel {
+    -fx-text-fill: #ff0000;
+    -fx-font-size: 14px;
+    -fx-font-family: Verdana;
+}
+/*##########################################*/
+
+/* Styles for home scenes */
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #8B0000;
+    -fx-text-fill: white;
+}
+
+.list-cell {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-family: Verdana;
+}
+
+.list-cell:odd {
+    -fx-background-color: #ff2222;
+}
+
+.list-cell:even {
+    -fx-background-color: #ff5555;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #8B0000;
+    -fx-text-fill: white;
+}
+
+#categoryPanel {
+
 }
 /*##########################################*/

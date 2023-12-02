@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.ClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: dddddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.LoginController">
    <children>
-      <AnchorPane maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0" styleClass="banner" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label ellipsisString="" layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" wrapText="true" />
             <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
