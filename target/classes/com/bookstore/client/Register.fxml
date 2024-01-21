@@ -7,39 +7,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: #dddddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.RegisterController">
-   <children>
-      <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0">
-         <children>
-            <Label layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" />
-            <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
-            <Button fx:id="bannerButton" layoutX="876.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="30.0" prefWidth="105.0" text="Zaloguj się" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="100.0" prefHeight="500.0" prefWidth="1024.0">
-         <children>
-            <Label layoutX="42.0" layoutY="27.0" styleClass="blackHeadLabel" text="Załóż konto" />
-            <TextField fx:id="firstName" layoutX="42.0" layoutY="152.0" promptText="Imię" />
-            <TextField fx:id="lastName" layoutX="42.0" layoutY="235.0" promptText="Nazwisko" />
-            <TextField fx:id="email" layoutX="369.0" layoutY="152.0" promptText="email@mail.com" />
-            <TextField fx:id="login" layoutX="369.0" layoutY="233.0" promptText="Login" />
-            <PasswordField fx:id="password" layoutX="369.0" layoutY="321.0" promptText="Hasło" />
-            <PasswordField layoutX="369.0" layoutY="403.0" promptText="Powtórz hasło" />
-            <TextField fx:id="city" layoutX="687.0" layoutY="152.0" promptText="Miejscowość" />
-            <TextField fx:id="postalCode" layoutX="687.0" layoutY="235.0" promptText="00-000" />
-            <TextField fx:id="street" layoutX="687.0" layoutY="321.0" promptText="Ulica" />
-            <TextField fx:id="houseNumber" layoutX="687.0" layoutY="403.0" promptText="Numer domu/lokalu" />
-            <Button layoutX="42.0" layoutY="381.0" mnemonicParsing="false" onAction="#proceedRegister" prefHeight="52.0" prefWidth="236.0" styleClass="confirmButton" text="Załóż konto" />
-            <Label layoutX="42.0" layoutY="131.0" text="Imię" />
-            <Label layoutX="42.0" layoutY="213.0" text="Nazwisko" />
-            <Label layoutX="370.0" layoutY="131.0" text="Adres email" />
-            <Label layoutX="371.0" layoutY="212.0" text="Login" />
-            <Label layoutX="369.0" layoutY="301.0" text="Hasło" />
-            <Label layoutX="369.0" layoutY="381.0" text="Powtórz hasło" />
-            <Label layoutX="687.0" layoutY="131.0" text="Miejscowość" />
-            <Label layoutX="687.0" layoutY="213.0" text="Kod pocztowy" />
-            <Label layoutX="687.0" layoutY="301.0" text="Ulica" />
-            <Label layoutX="687.0" layoutY="381.0" text="Numer domu/lokalu" />
-         </children>
-      </AnchorPane>
-   </children>
+    <children>
+        <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0">
+            <children>
+                <Label layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" />
+                <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
+                <Button fx:id="bannerButton" layoutX="876.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="30.0" prefWidth="105.0" text="Zaloguj się" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="100.0" prefHeight="500.0" prefWidth="1024.0">
+            <children>
+                <Label layoutX="42.0" layoutY="27.0" styleClass="blackHeadLabel" text="Załóż konto" />
+                <TextField fx:id="firstName" layoutX="42.0" layoutY="152.0" promptText="Imię" />
+                <TextField fx:id="lastName" layoutX="42.0" layoutY="235.0" promptText="Nazwisko" />
+                <TextField fx:id="email" layoutX="369.0" layoutY="152.0" promptText="email@mail.com" />
+                <TextField fx:id="login" layoutX="369.0" layoutY="233.0" promptText="Login" />
+                <PasswordField fx:id="password" layoutX="369.0" layoutY="321.0" promptText="Hasło" />
+                <PasswordField fx:id="passwordConfirmation" layoutX="369.0" layoutY="403.0" promptText="Powtórz hasło" />
+                <TextField fx:id="city" layoutX="687.0" layoutY="152.0" promptText="Miejscowość" />
+                <TextField fx:id="postalCode" layoutX="687.0" layoutY="235.0" promptText="00-000" />
+                <TextField fx:id="street" layoutX="687.0" layoutY="321.0" promptText="Ulica" />
+                <TextField fx:id="houseNumber" layoutX="687.0" layoutY="403.0" promptText="Numer domu/lokalu" />
+                <Button layoutX="42.0" layoutY="381.0" mnemonicParsing="false" onAction="#proceedRegister" prefHeight="52.0" prefWidth="236.0" styleClass="confirmButton" text="Załóż konto" />
+                <Label layoutX="42.0" layoutY="131.0" text="Imię" />
+                <Label layoutX="42.0" layoutY="213.0" text="Nazwisko" />
+                <Label layoutX="370.0" layoutY="131.0" text="Adres email" />
+                <Label layoutX="371.0" layoutY="212.0" text="Login" />
+                <Label layoutX="369.0" layoutY="301.0" text="Hasło" />
+                <Label layoutX="369.0" layoutY="381.0" text="Powtórz hasło" />
+                <Label layoutX="687.0" layoutY="131.0" text="Miejscowość" />
+                <Label layoutX="687.0" layoutY="213.0" text="Kod pocztowy" />
+                <Label layoutX="687.0" layoutY="301.0" text="Ulica" />
+                <Label layoutX="687.0" layoutY="381.0" text="Numer domu/lokalu" />
+                <Label fx:id="registerErrorLabel" layoutX="46.0" layoutY="295.0" prefHeight="60.0" prefWidth="269.0" wrapText="true" />
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

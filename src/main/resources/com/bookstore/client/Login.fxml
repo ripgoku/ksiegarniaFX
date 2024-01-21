@@ -7,23 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: dddddd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.LoginController">
-   <children>
-      <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label ellipsisString="" layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" wrapText="true" />
-            <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
-         </children></AnchorPane>
-      <AnchorPane fx:id="loginPanel" layoutX="346.0" layoutY="130.0" prefHeight="341.0" prefWidth="334.0">
-         <children>
-            <Label fx:id="whiteHeadLabel" layoutX="22.0" layoutY="14.0" text="Zaloguj się" />
-            <Label layoutX="22.0" layoutY="106.0" styleClass="loginLabel" text="Nazwa użytkownika" />
-            <TextField layoutX="22.0" layoutY="133.0" prefHeight="28.0" prefWidth="290.0" promptText="Nazwa użytkownika" />
-            <Label layoutX="22.0" layoutY="183.0" styleClass="loginLabel" text="Hasło" />
-            <PasswordField layoutX="22.0" layoutY="210.0" prefHeight="28.0" prefWidth="290.0" promptText="Hasło" />
-            <Button layoutX="97.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginRequest" prefHeight="41.0" prefWidth="141.0" styleClass="confirmButton" text="Zaloguj się" />
-         </children>
-      </AnchorPane>
-      <Button layoutX="474.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchToRegister" text="Załóż konto" />
-      <Label fx:id="loginErrorLabel" layoutX="359.0" layoutY="537.0" />
-   </children>
+    <children>
+        <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label ellipsisString="" layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" wrapText="true" />
+                <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="loginPanel" layoutX="346.0" layoutY="130.0" prefHeight="341.0" prefWidth="334.0">
+            <children>
+                <Label fx:id="whiteHeadLabel" layoutX="22.0" layoutY="14.0" text="Zaloguj się" />
+                <Label layoutX="22.0" layoutY="106.0" styleClass="loginLabel" text="Login" />
+                <TextField fx:id="login" layoutX="22.0" layoutY="133.0" prefHeight="28.0" prefWidth="290.0" promptText="Login" />
+                <Label layoutX="22.0" layoutY="183.0" styleClass="loginLabel" text="Hasło" />
+                <PasswordField fx:id="password" layoutX="22.0" layoutY="210.0" onAction="#loginRequest" prefHeight="28.0" prefWidth="290.0" promptText="Hasło" />
+                <Button layoutX="97.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginRequest" prefHeight="41.0" prefWidth="141.0" styleClass="confirmButton" text="Zaloguj się" />
+            </children>
+        </AnchorPane>
+        <Button layoutX="474.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchToRegister" text="Załóż konto" />
+        <Label fx:id="loginErrorLabel" layoutX="359.0" layoutY="537.0" />
+    </children>
 </AnchorPane>

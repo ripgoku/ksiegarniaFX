@@ -38,6 +38,7 @@
     -fx-border-width: 1px;
     -fx-border-color: #880000;
     -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
 }
 
 .confirmButton:hover {
@@ -88,28 +89,12 @@
 }
 /*##########################################*/
 
-/* Styles for login scene */
-.loginLabel {
-    -fx-font-size: 16px;
-    -fx-text-fill: #ffffff;
-    -fx-font-family: Verdana;
-    -fx-font-weight: bold;
-}
-
-#loginPanel {
-    -fx-background-color: #ff0000;
-}
-
-#whiteHeadLabel {
-    -fx-font-size: 42px;
-    -fx-text-fill: #ffffff;
-    -fx-font-weight: bold;
-}
-
-#loginErrorLabel {
-    -fx-text-fill: #ff0000;
+/* Styles for register scene */
+#registerErrorLabel {
+    -fx-text-fill: #000000;
     -fx-font-size: 14px;
     -fx-font-family: Verdana;
+    -fx-text-alignment: left;
 }
 /*##########################################*/
 
@@ -141,5 +126,128 @@
 
 #categoryPanel {
 
+}
+
+#categoryNameLabel {
+    -fx-font-size: 24px;
+    -fx-font-family: Verdana;
+}
+
+.box {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-pref-width: 150;
+    -fx-pref-height: 190;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.titleLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-font-family: Verdana;
+}
+
+.authorLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-font-size: 9px;
+    -fx-font-family: Verdana;
+}
+
+.priceLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-family: Verdana;
+}
+
+.imageContainer {
+    -fx-alignment: CENTER;
+}
+
+#slidingPanel {
+    -fx-background-color: #dddddd;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+}
+
+#shoppingCartScrollPane {
+    -fx-background-color: #dddddd;
+}
+
+#shoppingCartSummaryPane {
+    -fx-background-color: #dddddd;
+}
+
+#totalCostLabel {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-font-family: Verdana;
+    -fx-alignment: top_right;
+}
+
+#zlotyLabel {
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-font-family: Verdana;
+}
+
+.addToCartButton {
+    -fx-background-color: #f4f4f4;
+    -fx-text-fill: #ffffff;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #ff0000;
+    -fx-border-radius: 6px;
+    -fx-padding: 0;
+}
+
+.addToCartButton:hover {
+    -fx-background-color: #f9f9f9;
+    -fx-border-radius: 6px;
+}
+
+.addToCartButton:pressed {
+    -fx-background-color: #f0f0f0;
+}
+
+#summaryLabel {
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+    -fx-font-family: Verdana;
+}
+
+.deleteFromShoppingCartButton {
+    -fx-font-size: 20px;
+    -fx-background-color: #cc0000;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #880000;
+    -fx-border-radius: 6px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-radius: 6px;
+}
+
+.deleteFromShoppingCartButton:hover {
+    -fx-background-color: #dd0000;
+    -fx-border-radius: 6px;
+}
+
+.deleteFromShoppingCartButton:pressed {
+    -fx-background-color: #aa0000;
+    -fx-border-width: 2px;
+}
+
+#shippingMethodLabel {
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+    -fx-font-family: Verdana;
 }
 /*##########################################*/

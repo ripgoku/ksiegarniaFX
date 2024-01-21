@@ -1,27 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.HomeController">
-   <children>
-      <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0">
+    <children>
+        <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0">
+            <children>
+                <Label layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" />
+                <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
+                <Button fx:id="bannerButton" layoutX="748.0" layoutY="35.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="244.0" text="*TODO* Your Name" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="100.0" prefHeight="500.0" prefWidth="1024.0">
+            <children>
+                <AnchorPane fx:id="categoryPanel" prefHeight="500.0" prefWidth="244.0">
+                    <children>
+                        <ListView fx:id="categoryListView" layoutY="-1.0" prefHeight="500.0" prefWidth="244.0" />
+                    </children>
+                </AnchorPane>
+            <ToggleButton fx:id="koszykButton" layoutX="823.0" layoutY="19.0" mnemonicParsing="false" onAction="#toggleSlidingPanel" prefHeight="46.0" prefWidth="173.0" styleClass="confirmButton" text="Koszyk" />
+            <TilePane fx:id="book_panel" layoutX="244.0" layoutY="81.0" prefHeight="383.0" prefWidth="780.0" />
+            <Label fx:id="booksErrorLabel" layoutX="296.0" layoutY="32.0" prefHeight="20.0" prefWidth="420.0" />
+            <Button fx:id="nextPage" layoutX="985.0" layoutY="469.0" mnemonicParsing="false" text="&gt;" />
+            <Button fx:id="prevPage" layoutX="915.0" layoutY="469.0" mnemonicParsing="false" text="&lt;" />
+            <Label fx:id="curPage" layoutX="948.0" layoutY="472.0" text="1/2" />
+            <Label fx:id="categoryNameLabel" layoutX="449.0" layoutY="19.0" prefHeight="52.0" prefWidth="342.0" />
+            <TextField fx:id="searchField" layoutX="252.0" layoutY="27.0" onAction="#performSearch" prefHeight="30.0" prefWidth="145.0" promptText="Wyszukaj" />
+            </children>
+        </AnchorPane>
+      <AnchorPane fx:id="slidingPanel" layoutX="245.0" layoutY="600.0" prefHeight="422.0" prefWidth="779.0">
          <children>
-            <Label layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" />
-            <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
-            <Button fx:id="bannerButton" layoutX="748.0" layoutY="35.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="244.0" text="*TODO* Your Name" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="100.0" prefHeight="500.0" prefWidth="1024.0">
-         <children>
-            <AnchorPane fx:id="categoryPanel" prefHeight="500.0" prefWidth="244.0">
+            <AnchorPane fx:id="shoppingCartSummaryPane" layoutX="606.0" layoutY="8.0" prefHeight="410.0" prefWidth="166.0">
                <children>
-                  <ListView fx:id="categoryListView" layoutY="-1.0" prefHeight="500.0" prefWidth="244.0" />
+                  <Label fx:id="totalCostLabel" layoutX="14.0" layoutY="41.0" prefHeight="30.0" prefWidth="117.0" text="0.00" textAlignment="CENTER" />
+                  <Label fx:id="zlotyLabel" layoutX="139.0" layoutY="41.0" prefHeight="30.0" prefWidth="25.0" text="zł">
+                     <font>
+                        <Font name="Verdana" size="50.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="shoppingCartOrderButton" layoutX="20.0" layoutY="349.0" mnemonicParsing="false" onAction="#proceedOrder" prefHeight="46.0" prefWidth="126.0" styleClass="confirmButton" text="Zamów" />
+                  <Label fx:id="summaryLabel" layoutX="7.0" layoutY="14.0" text="Łączna kwota:" />
+                  <Label fx:id="shippingMethodLabel" layoutX="5.0" layoutY="226.0" styleClass="imageContainer" text="Metoda dostawy:" />
+                  <ChoiceBox fx:id="shippingMethodChoice" layoutX="8.0" layoutY="260.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
-            <Button layoutX="844.0" layoutY="14.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="166.0" styleClass="confirmButton" text="Koszyk" />
+            <ScrollPane fx:id="shoppingCartScrollPane" layoutX="3.0" layoutY="3.0" prefHeight="416.0" prefWidth="599.0" />
          </children></AnchorPane>
-   </children>
+    </children>
 </AnchorPane>
