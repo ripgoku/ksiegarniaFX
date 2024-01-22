@@ -251,3 +251,10 @@
     -fx-font-family: Verdana;
 }
 /*##########################################*/
+
+#slidingPanel2 {
+    -fx-background-color: #dddddd;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+}

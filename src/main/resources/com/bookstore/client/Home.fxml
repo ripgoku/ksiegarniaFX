@@ -17,7 +17,8 @@
             <children>
                 <Label layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" />
                 <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
-                <Button fx:id="bannerButton" layoutX="748.0" layoutY="35.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="244.0" text="*TODO* Your Name" />
+                <Button fx:id="bannerButton" layoutX="748.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchToUser" prefHeight="30.0" prefWidth="244.0" text="*TODO* Your Name" />
+            <Label fx:id="homeErrorLabel" layoutX="261.0" layoutY="42.0" prefHeight="20.0" prefWidth="464.0" style="-fx-text-fill: white; -fx-font-family: Verdana;" />
             </children>
         </AnchorPane>
         <AnchorPane layoutY="100.0" prefHeight="500.0" prefWidth="1024.0">
@@ -29,7 +30,6 @@
                 </AnchorPane>
             <ToggleButton fx:id="koszykButton" layoutX="823.0" layoutY="19.0" mnemonicParsing="false" onAction="#toggleSlidingPanel" prefHeight="46.0" prefWidth="173.0" styleClass="confirmButton" text="Koszyk" />
             <TilePane fx:id="book_panel" layoutX="244.0" layoutY="81.0" prefHeight="383.0" prefWidth="780.0" />
-            <Label fx:id="booksErrorLabel" layoutX="296.0" layoutY="32.0" prefHeight="20.0" prefWidth="420.0" />
             <Button fx:id="nextPage" layoutX="985.0" layoutY="469.0" mnemonicParsing="false" text="&gt;" />
             <Button fx:id="prevPage" layoutX="915.0" layoutY="469.0" mnemonicParsing="false" text="&lt;" />
             <Label fx:id="curPage" layoutX="948.0" layoutY="472.0" text="1/2" />

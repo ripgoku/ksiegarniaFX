@@ -38,4 +38,8 @@ public class ShoppingCart {
     public Map<Book, Integer> getCartItems() {
         return cartItems;
     }
+
+    public void clearCart() {
+        cartItems.clear();
+    }
 }

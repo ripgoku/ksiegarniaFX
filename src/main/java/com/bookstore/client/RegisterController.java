@@ -111,12 +111,10 @@ public class RegisterController {
             return;
         }
 
-        // Utwórz komunikat rejestracji
         Message registrationMessage = new Message();
         registrationMessage.setType(MessageType.REGISTER);
         registrationMessage.setData(registrationData);
 
-        // Wysyłanie komunikatu do serwera
         serverConnection.sendMessage(registrationMessage);
 
         Message serverAnswer = (Message) serverConnection.receiveMessage();

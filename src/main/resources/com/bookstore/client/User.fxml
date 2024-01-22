@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.client.UserController">
+    <children>
+        <AnchorPane fx:id="banner" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1024.0">
+            <children>
+                <Label layoutX="41.0" lineSpacing="1.0" prefHeight="46.0" prefWidth="125.0" styleClass="bannerLogo" text="Czytaj" />
+                <Label layoutX="83.0" layoutY="30.0" styleClass="bannerLogo" text="z pasją!" />
+                <Button fx:id="bannerButton" layoutX="748.0" layoutY="35.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="30.0" prefWidth="244.0" text="Wróć do sklepu" />
+            <Label fx:id="errorLabel" layoutX="324.0" layoutY="42.0" prefHeight="20.0" prefWidth="376.0" style="-fx-text-fill: white; -fx-font-family: Verdana;" />
+            </children>
+        </AnchorPane>
+      <Label fx:id="firstNameLabel" layoutX="377.0" layoutY="151.0" prefHeight="20.0" prefWidth="287.0" text="Imię: " />
+      <Label fx:id="lastNameLabel" layoutX="377.0" layoutY="223.0" prefHeight="20.0" prefWidth="287.0" text="Nazwisko: " />
+      <Label fx:id="emailLabel" layoutX="377.0" layoutY="311.0" prefHeight="20.0" prefWidth="287.0" text="Adres email: " />
+      <Label fx:id="loginLabel" layoutX="377.0" layoutY="391.0" prefHeight="20.0" prefWidth="287.0" text="Login: " />
+      <Label fx:id="cityLabel" layoutX="697.0" layoutY="151.0" prefHeight="20.0" prefWidth="287.0" text="Miejscowość: " />
+      <Label fx:id="postalCodeLabel" layoutX="697.0" layoutY="223.0" prefHeight="20.0" prefWidth="287.0" text="Kod pocztowy: " />
+      <Label fx:id="streetNameLabel" layoutX="697.0" layoutY="311.0" prefHeight="20.0" prefWidth="287.0" text="Ulica: " />
+      <Label fx:id="houseNumberLabel" layoutX="697.0" layoutY="391.0" prefHeight="20.0" prefWidth="287.0" text="Numer domu/lokalu: " />
+      <AnchorPane fx:id="slidingPanel" layoutX="245.0" layoutY="600.0" prefHeight="422.0" prefWidth="779.0">
+         <children>
+            <TextField fx:id="firstNameTextField" layoutX="22.0" layoutY="55.0" promptText="Imię" />
+            <TextField fx:id="lastNameTextField" layoutX="22.0" layoutY="125.0" promptText="Nazwisko" />
+            <TextField fx:id="emailTextField" layoutX="22.0" layoutY="196.0" promptText="email@mail.com" />
+            <TextField fx:id="loginTextField" layoutX="22.0" layoutY="271.0" promptText="Login" />
+            <TextField fx:id="cityTextField" layoutX="390.0" layoutY="55.0" promptText="Miejscowość" />
+            <TextField fx:id="postalCodeTextField" layoutX="390.0" layoutY="125.0" promptText="00-000" />
+            <TextField fx:id="streetNameTextField" layoutX="390.0" layoutY="196.0" promptText="Ulica" />
+            <TextField fx:id="houseNumberTextField" layoutX="390.0" layoutY="271.0" promptText="Numer domu/lokalu" />
+            <Label layoutX="22.0" layoutY="35.0" text="Imię" />
+            <Label layoutX="22.0" layoutY="105.0" text="Nazwisko" />
+            <Label layoutX="22.0" layoutY="175.0" text="Adres email" />
+            <Label layoutX="22.0" layoutY="248.0" text="Login" />
+            <Label layoutX="390.0" layoutY="35.0" text="Miejscowość" />
+            <Label layoutX="390.0" layoutY="105.0" text="Kod pocztowy" />
+            <Label layoutX="390.0" layoutY="175.0" text="Ulica" />
+            <Label layoutX="390.0" layoutY="248.0" text="Numer domu/lokalu" />
+            <Button layoutX="573.0" layoutY="342.0" mnemonicParsing="false" onAction="#updateDetails" prefHeight="46.0" prefWidth="160.0" styleClass="confirmButton" text="Zatwierdź" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="slidingPanel2" layoutY="600.0" prefHeight="300.0" prefWidth="244.0">
+         <children>
+            <PasswordField fx:id="newPasswordField" layoutX="36.0" layoutY="98.0" promptText="Nowe hasło" />
+            <PasswordField fx:id="confirmPasswordField" layoutX="36.0" layoutY="170.0" promptText="Powtórz hasło" />
+            <Label layoutX="37.0" layoutY="78.0" text="Nowe hasło" />
+            <Label layoutX="36.0" layoutY="150.0" text="Powtórz hasło" />
+            <Label layoutX="37.0" layoutY="14.0" text="Stare hasło" />
+            <Button layoutX="65.0" layoutY="228.0" mnemonicParsing="false" onAction="#updatePassword" styleClass="confirmButton" text="Zatwierdź" />
+            <PasswordField fx:id="oldPasswordField" layoutX="36.0" layoutY="34.0" promptText="Stare hasło" />
+         </children>
+      </AnchorPane>
+      <ToggleButton fx:id="changeDetailsButton" layoutX="53.0" layoutY="148.0" mnemonicParsing="false" onAction="#toggleSlidingPanel" prefHeight="46.0" prefWidth="136.0" styleClass="confirmButton" text="Zmień dane" />
+      <ToggleButton fx:id="changePasswordButton" layoutX="53.0" layoutY="233.0" mnemonicParsing="false" onAction="#toggleSlidingPanel2" styleClass="confirmButton" text="Zmień hasło" />
+    </children>
+</AnchorPane>

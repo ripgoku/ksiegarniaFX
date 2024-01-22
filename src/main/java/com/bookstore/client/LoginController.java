@@ -64,8 +64,9 @@ public class LoginController {
             UserData userData = (UserData) serverAnswer.getData();
             LoggedUser.getInstance().setUser(userData.getCustomer_id(), userData.getAdres_id(),
                     userData.getFirst_name(), userData.getLast_name(), userData.getPostalCode(),
-                    userData.getCity(), userData.getStreet(), userData.getHouseNumber());
+                    userData.getCity(), userData.getStreet(), userData.getHouseNumber(), userData.getEmail(), userData.getLogin());
 
+            int temp = LoggedUser.getInstance().getAdresId();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
             Parent root = loader.load();

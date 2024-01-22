@@ -1,7 +1,6 @@
 package com.bookstore.client;
 
-import com.bookstore.Book;
-import com.bookstore.Message;
+import com.bookstore.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -44,8 +43,6 @@ public class HomeController implements Initializable {
     @FXML
     private TilePane book_panel;
     @FXML
-    private Label booksErrorLabel;
-    @FXML
     private Button nextPage;
     @FXML
     private Button prevPage;
@@ -68,7 +65,9 @@ public class HomeController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private ChoiceBox shippingMethodChoice;
+    private ChoiceBox<ShippingMethod> shippingMethodChoice;
+    @FXML
+    private Label homeErrorLabel;
 
     String[] category = {"Wszystkie", "albumy", "biografie", "biznes", "dla dzieci", "dla młodzieży", "encyklopedie i słowniki", "ezoteryka",
             "fantastyka", "historia", "informatyka", "komiksy", "kryminał i sensacja", "kultura i sztuka", "lektury",
@@ -96,6 +95,13 @@ public class HomeController implements Initializable {
         bannerButton.setText(LoggedUser.getInstance().getFirstName() + " " + LoggedUser.getInstance().getLastName());
         categoryListView.getItems().addAll(category);
         initializeShippingMethods();
+
+        shippingMethodChoice.getSelectionModel().selectedItemProperty().addListener((observableValue, oldMethod, newMethod) -> {
+            if (newMethod != null) {
+                updateShoppingCartView();
+            }
+        });
+
         categoryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 handleCategorySelection(newValue);
@@ -115,18 +121,45 @@ public class HomeController implements Initializable {
     }
 
     private void initializeShippingMethods() {
-        shippingMethodChoice.getItems().add(new ShippingMethod("Standard", 7.00));
-        shippingMethodChoice.getItems().add(new ShippingMethod("Priorytet", 11.90));
-        shippingMethodChoice.getItems().add(new ShippingMethod("Ekspres", 14.90));
-        shippingMethodChoice.getItems().add(new ShippingMethod("Międzynarodowa", 34.50));
+        shippingMethodChoice.getItems().add(new ShippingMethod(1,"Standard", 7.00));
+        shippingMethodChoice.getItems().add(new ShippingMethod(2,"Priorytet", 11.90));
+        shippingMethodChoice.getItems().add(new ShippingMethod(3,"Ekspres", 14.90));
+        shippingMethodChoice.getItems().add(new ShippingMethod(4,"Międzynarodowa", 34.50));
 
-        // Ustaw domyślną metodę dostawy
         shippingMethodChoice.setValue(shippingMethodChoice.getItems().get(0));
     }
 
     @FXML
-    public void proceedOrder(ActionEvent e) throws IOException {
+    public void switchToUser(ActionEvent e) throws IOException {
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
+        Parent root = loader.load();
+        UserController controller = loader.getController();
+        controller.setServerConnection(serverConnection);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        scene.getStylesheets().add(css);
+        stage.show();
+    }
 
+    @FXML
+    public void proceedOrder(ActionEvent e) throws IOException, ClassNotFoundException {
+        Order order = new Order(LoggedUser.getInstance().getCustomerId(), LoggedUser.getInstance().getAdresId(),
+                ShoppingCart.getInstance().getCartItems(), shippingMethodChoice.getValue());
+
+        Message orderMessage = new Message();
+        orderMessage.setType(MessageType.ORDER_PRODUCT);
+        orderMessage.setData(order);
+
+        serverConnection.sendMessage(orderMessage);
+        Message serverAnswer = (Message) serverConnection.receiveMessage();
+        if (serverAnswer.getType() == MessageType.SERVER_MESSAGE_SUCCES) {
+            homeErrorLabel.setText((String) serverAnswer.getData());
+            ShoppingCart.getInstance().clearCart();
+            updateShoppingCartView();
+        } else if (serverAnswer.getType() == SERVER_MESSAGE_ERROR) {
+            homeErrorLabel.setText((String) serverAnswer.getData());
+        }
     }
 
     @FXML
@@ -143,6 +176,7 @@ public class HomeController implements Initializable {
 
     @FXML
     public void toggleSlidingPanel() {
+        homeErrorLabel.setText("");
         Timeline timeline = new Timeline();
         KeyValue kv;
         if (koszykButton.isSelected()) {
@@ -203,7 +237,12 @@ public class HomeController implements Initializable {
 
             totalCost += book.getPrice() * quantity;
         }
-        shoppingCartScrollPane.setContent(cartContent); // Ustawia zawartość ScrollPane
+
+        ShippingMethod selectedMethod = shippingMethodChoice.getValue();
+        if (selectedMethod != null) {
+            totalCost += selectedMethod.getPrice();
+        }
+        shoppingCartScrollPane.setContent(cartContent);
         totalCostLabel.setText(String.valueOf(String.format("%.2f", totalCost)));
     }
 
@@ -241,6 +280,7 @@ public class HomeController implements Initializable {
     public void postInitialization() {
         try {
             initializeBooksView();
+            updateShoppingCartView();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -263,7 +303,7 @@ public class HomeController implements Initializable {
 
         Message serverAnswer = (Message) serverConnection.receiveMessage();
         if (serverAnswer.getType() == SERVER_MESSAGE_ERROR) {
-            booksErrorLabel.setText((String) serverAnswer.getData());
+            homeErrorLabel.setText((String) serverAnswer.getData());
         } else if (serverAnswer.getType() == VIEW_BOOKS) {
             allBooks = (List<Book>) serverAnswer.getData();
             books = new ArrayList<>(allBooks);
@@ -299,13 +339,12 @@ public class HomeController implements Initializable {
         return book_panel;
     }
 
-
     private VBox createBookBox(Book book) {
         VBox box = new VBox(4);
         Label titleLabel = new Label(book.getTitle());
         String authorsText = String.join(", ", book.getAuthors());
         Label authorLabel = new Label(authorsText);
-        Label priceLabel = new Label(String.valueOf(book.getPrice()) + " zł");
+        Label priceLabel = new Label(String.format("%.2f zł", book.getPrice()));
         priceLabel.setMinWidth(100);
         ImageView imageView = new ImageView();
 
