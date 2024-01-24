@@ -21,6 +21,9 @@ import javafx.util.converter.DefaultStringConverter;
 
 import static com.bookstore.MessageType.SERVER_MESSAGE;
 
+/**
+ * Kontroler obsługujący rejestrację użytkownika w aplikacji.
+ */
 public class RegisterController {
     @FXML
     private AnchorPane banner;
@@ -52,6 +55,9 @@ public class RegisterController {
     private ServerConnection serverConnection;
     private final String css = Objects.requireNonNull(this.getClass().getResource("application.css")).toExternalForm();
 
+    /**
+     * Inicjalizacja kontrolera, ustawienie filtrowania dla pola "postalCode".
+     */
     @FXML
     public void initialize() {
         UnaryOperator<TextFormatter.Change> postalCodeFilter = change -> {
@@ -65,6 +71,12 @@ public class RegisterController {
         postalCode.setTextFormatter(new TextFormatter<>(new DefaultStringConverter(), "", postalCodeFilter));
     }
 
+    /**
+     * Przełącza widok na ekran logowania po naciśnięciu przycisku "Zaloguj się".
+     *
+     * @param e Zdarzenie akcji przycisku.
+     * @throws IOException Wyjątek, jeśli wystąpi problem z ładowaniem widoku.
+     */
     @FXML
     public void switchToLogin(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -78,6 +90,13 @@ public class RegisterController {
         stage.show();
     }
 
+    /**
+     * Obsługuje proces rejestracji użytkownika po naciśnięciu przycisku "Zarejestruj się".
+     *
+     * @param e Zdarzenie akcji przycisku.
+     * @throws IOException            Wyjątek, jeśli wystąpi problem z ładowaniem widoku.
+     * @throws ClassNotFoundException Wyjątek, jeśli wystąpi problem z klasą.
+     */
     @FXML
     public void proceedRegister(ActionEvent e) throws IOException, ClassNotFoundException {
         registerErrorLabel.setText("");
@@ -97,7 +116,13 @@ public class RegisterController {
                  password,  city,  postalCode,
                  street,  houseNumber);
 
-        if (!password.equals(passwordConfirmation)) {
+        if (login.equals("")) {
+            registerErrorLabel.setText("Login jest pusty!");
+            return;
+        } else if (password.equals("")) {
+            registerErrorLabel.setText("Hasło jest puste!");
+            return;
+        }else if (!password.equals(passwordConfirmation)) {
             registerErrorLabel.setText("Hasła nie są identyczne!");
             return;
         } else if (password.contains(" ")) {
@@ -134,6 +159,11 @@ public class RegisterController {
         stage.show();
     }
 
+    /**
+     * Ustawia połączenie serwera dla kontrolera.
+     *
+     * @param serverConnection Połączenie z serwerem.
+     */
     public void setServerConnection(ServerConnection serverConnection) {
         this.serverConnection = serverConnection;
     }

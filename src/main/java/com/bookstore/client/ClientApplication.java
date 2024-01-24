@@ -10,9 +10,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Klasa ClientApplication odpowiada za uruchamianie interfejsu użytkownika klienta aplikacji księgarni.
+ * Rozszerza klasę Application z JavaFX i jest punktem startowym dla interfejsu użytkownika klienta.
+ */
 public class ClientApplication extends Application {
     private ServerConnection serverConnection;
 
+    /**
+     * Startuje aplikację klienta, łączy się z serwerem i inicjuje interfejs użytkownika.
+     * Ładuje główny widok z pliku FXML, ustawia scenę i pokazuje okno aplikacji.
+     *
+     * @param stage Główna scena/stage dla aplikacji JavaFX.
+     * @throws IOException W przypadku problemów z załadowaniem pliku FXML.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         serverConnection = new ServerConnection("127.0.0.1", 6666);
@@ -35,6 +46,12 @@ public class ClientApplication extends Application {
         stage.show();
     }
 
+    /**
+     * Zamyka połączenie z serwerem, gdy aplikacja jest zamykana.
+     * Jest to nadpisanie metody stop z klasy Application JavaFX.
+     *
+     * @throws Exception W przypadku problemów z zamknięciem połączenia.
+     */
     @Override
     public void stop() throws Exception {
         if (serverConnection != null) {

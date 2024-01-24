@@ -21,6 +21,12 @@ import java.util.Objects;
 
 import static com.bookstore.MessageType.*;
 
+/**
+ * Kontroler obsługujący logowanie użytkownika do aplikacji.
+ * <p>
+ * Klasa odpowiedzialna za obsługę interfejsu logowania użytkownika, w tym
+ * autentyfikację i przełączanie się do widoku rejestracji.
+ */
 public class LoginController {
     @FXML
     private AnchorPane banner;
@@ -38,10 +44,25 @@ public class LoginController {
     private final String css = Objects.requireNonNull(this.getClass().getResource("application.css")).toExternalForm();
     ServerConnection serverConnection;
 
+    /**
+     * Ustawia połączenie z serwerem dla tego kontrolera.
+     *
+     * @param serverConnection Instancja ServerConnection do komunikacji z serwerem.
+     */
     public void setServerConnection(ServerConnection serverConnection) {
         this.serverConnection = serverConnection;
     }
 
+    /**
+     * Obsługuje żądanie logowania.
+     * <p>
+     * Wysyła dane logowania do serwera, a następnie przetwarza odpowiedź.
+     * W przypadku pomyślnego logowania, przenosi użytkownika do głównego widoku aplikacji.
+     *
+     * @param e Zdarzenie wywołujące metodę.
+     * @throws IOException Wyjątek rzucany w przypadku problemów z ładowaniem widoku.
+     * @throws ClassNotFoundException Wyjątek rzucany w przypadku problemów z deserializacją odpowiedzi serwera.
+     */
     @FXML
     public void loginRequest(ActionEvent e) throws IOException, ClassNotFoundException {
         loginErrorLabel.setText("");
@@ -66,7 +87,6 @@ public class LoginController {
                     userData.getFirst_name(), userData.getLast_name(), userData.getPostalCode(),
                     userData.getCity(), userData.getStreet(), userData.getHouseNumber(), userData.getEmail(), userData.getLogin());
 
-            int temp = LoggedUser.getInstance().getAdresId();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
             Parent root = loader.load();
@@ -79,6 +99,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * Przełącza widok do formularza rejestracji.
+     *
+     * @param e Zdarzenie wywołujące metodę.
+     * @throws IOException Wyjątek rzucany w przypadku problemów z ładowaniem widoku.
+     */
     @FXML
     public void switchToRegister(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

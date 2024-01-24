@@ -31,7 +31,13 @@ import java.util.stream.Collectors;
 import static com.bookstore.MessageType.SERVER_MESSAGE_ERROR;
 import static com.bookstore.MessageType.VIEW_BOOKS;
 
+/**
+ * Klasa HomeController zarządza głównym interfejsem użytkownika aplikacji klienta księgarni.
+ * Jest odpowiedzialna za wyświetlanie książek, zarządzanie koszykiem zakupów oraz interakcje z serwerem.
+ * Zawiera metody do przetwarzania zdarzeń interfejsu użytkownika oraz zarządzania danymi wyświetlanymi na ekranie.
+ */
 public class HomeController implements Initializable {
+    // Deklaracje elementów interfejsu użytkownika
     @FXML
     private AnchorPane banner;
     @FXML
@@ -85,11 +91,20 @@ public class HomeController implements Initializable {
     private static final double SLIDING_PANEL_HIDDEN_Y = 600.0;
     private static final double SLIDING_PANEL_SHOWN_Y = 178.0;
 
+    /**
+     * Ustawia połączenie z serwerem dla kontrolera.
+     * @param serverConnection Instancja połączenia z serwerem.
+     */
     public void setServerConnection(ServerConnection serverConnection) {
         this.serverConnection = serverConnection;
         postInitialization();
     }
 
+    /**
+     * Inicjalizuje kontroler, ustawiając początkowe wartości i konfiguracje interfejsu użytkownika.
+     * @param url URL używane do rozwiązania ścieżek względnych dla korzenia obiektu, lub null jeśli nieznane.
+     * @param resourceBundle Zasób, który zawiera dane lokalizacji.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bannerButton.setText(LoggedUser.getInstance().getFirstName() + " " + LoggedUser.getInstance().getLastName());
@@ -120,15 +135,25 @@ public class HomeController implements Initializable {
         });
     }
 
+    /**
+     * Inicjalizuje metody dostawy dostępne w aplikacji.
+     * Dodaje różne metody dostawy do listy wyboru i ustawia domyślną metodę dostawy.
+     */
     private void initializeShippingMethods() {
         shippingMethodChoice.getItems().add(new ShippingMethod(1,"Standard", 7.00));
         shippingMethodChoice.getItems().add(new ShippingMethod(2,"Priorytet", 11.90));
         shippingMethodChoice.getItems().add(new ShippingMethod(3,"Ekspres", 14.90));
         shippingMethodChoice.getItems().add(new ShippingMethod(4,"Międzynarodowa", 34.50));
 
-        shippingMethodChoice.setValue(shippingMethodChoice.getItems().get(0));
+        shippingMethodChoice.setValue(shippingMethodChoice.getItems().getFirst());
     }
 
+    /**
+     * Przełącza widok do panelu użytkownika.
+     *
+     * @param e Zdarzenie, które wywołuje tę metodę.
+     * @throws IOException W przypadku błędu podczas ładowania pliku FXML.
+     */
     @FXML
     public void switchToUser(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -142,8 +167,14 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Realizuje proces składania zamówienia.
+     *
+     * @throws IOException W przypadku błędu podczas komunikacji z serwerem.
+     * @throws ClassNotFoundException W przypadku błędów związanych z deserializacją.
+     */
     @FXML
-    public void proceedOrder(ActionEvent e) throws IOException, ClassNotFoundException {
+    public void proceedOrder() throws IOException, ClassNotFoundException {
         Order order = new Order(LoggedUser.getInstance().getCustomerId(), LoggedUser.getInstance().getAdresId(),
                 ShoppingCart.getInstance().getCartItems(), shippingMethodChoice.getValue());
 
@@ -162,6 +193,10 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Przetwarza zapytanie o wyszukanie książek na podstawie wprowadzonego tekstu.
+     * Wyszukuje książki z listy wszystkich książek, które pasują do kryteriów wyszukiwania.
+     */
     @FXML
     public void performSearch() {
         String searchText = searchField.getText();
@@ -174,6 +209,10 @@ public class HomeController implements Initializable {
         updateBookView(searchResults);
     }
 
+    /**
+     * Przełącza panel boczny koszyka, pokazując lub ukrywając go.
+     * Używa animacji do płynnego przejścia.
+     */
     @FXML
     public void toggleSlidingPanel() {
         homeErrorLabel.setText("");
@@ -192,6 +231,10 @@ public class HomeController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Aktualizuje widok koszyka zakupów.
+     * Wyświetla produkty w koszyku wraz z ich cenami, ilościami oraz sumarycznym kosztem.
+     */
     private void updateShoppingCartView() {
         VBox cartContent = new VBox(10);
         double totalCost = 0.00d;
@@ -246,12 +289,22 @@ public class HomeController implements Initializable {
         totalCostLabel.setText(String.valueOf(String.format("%.2f", totalCost)));
     }
 
+    /**
+     * Obsługuje zdarzenie wyboru kategorii książek.
+     *
+     * @param selectedCategory Wybrana kategoria książek.
+     */
     private void handleCategorySelection(String selectedCategory) {
         categoryNameLabel.setText(selectedCategory);
         List<Book> filteredBooks = getBooksByCategory(selectedCategory);
         updateBookView(filteredBooks);
     }
 
+    /**
+     * Aktualizuje widok książek na podstawie przefiltrowanej listy.
+     *
+     * @param filteredBooks Lista książek do wyświetlenia.
+     */
     private void updateBookView(List<Book> filteredBooks) {
         book_panel.getChildren().clear();
         filteredBooks.forEach(book -> {
@@ -268,6 +321,12 @@ public class HomeController implements Initializable {
         curPage.setText("1/" + pageCount);
     }
 
+    /**
+     * Filtruje książki według wybranej kategorii.
+     *
+     * @param category Kategoria, według której mają zostać przefiltrowane książki.
+     * @return Lista książek należących do wybranej kategorii.
+     */
     private List<Book> getBooksByCategory(String category) {
         if (category.equals("Wszystkie"))
             return allBooks;
@@ -277,6 +336,12 @@ public class HomeController implements Initializable {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Inicjalizuje widok książek, pobierając je z serwera.
+     *
+     * @throws IOException W przypadku błędu podczas komunikacji z serwerem.
+     * @throws ClassNotFoundException W przypadku błędów związanych z deserializacją.
+     */
     public void postInitialization() {
         try {
             initializeBooksView();
@@ -286,12 +351,24 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Aktualizuje stronę widoku książek.
+     *
+     * @param newPageIndex Numer nowej strony do wyświetlenia.
+     */
     private void updatePage(int newPageIndex) {
         curPageIndex = newPageIndex;
         createPage(curPageIndex);
         curPage.setText((curPageIndex + 1) + "/" + pagination.getPageCount());
     }
 
+    /**
+     * Inicjalizuje widok książek w aplikacji.
+     * Łączy się z serwerem i pobiera listę dostępnych książek, a następnie aktualizuje widok.
+     *
+     * @throws IOException W przypadku błędu wejścia-wyjścia.
+     * @throws ClassNotFoundException W przypadku braku klasy.
+     */
     private void initializeBooksView() throws IOException, ClassNotFoundException {
         if (serverConnection == null) {
             System.out.println("Błąd połączenia!");
@@ -315,10 +392,19 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * Oblicza liczbę stron na podstawie liczby dostępnych książek i liczby książek na stronę.
+     *
+     * @return Liczba stron z książkami.
+     */
     private int getPageCount() {
         return (int) Math.ceil((double) books.size() / ITEMS_PER_PAGE);
     }
 
+    /**
+     * Inicjalizuje paginację (podział na strony) widoku książek.
+     * Ustawia liczbę stron i fabrykę stron do generowania widoku poszczególnych stron.
+     */
     private void initializePagination() {
         int pageCount = getPageCount();
         pagination = new Pagination(pageCount, 0);
@@ -326,6 +412,12 @@ public class HomeController implements Initializable {
         book_panel.getChildren().add(pagination);
     }
 
+    /**
+     * Tworzy widok pojedynczej strony z książkami.
+     *
+     * @param pageIndex Numer strony do utworzenia.
+     * @return Węzeł reprezentujący stronę z książkami.
+     */
     private Node createPage(int pageIndex) {
         int fromIndex = pageIndex * ITEMS_PER_PAGE;
         int toIndex = Math.min(fromIndex + ITEMS_PER_PAGE, books.size());
@@ -339,6 +431,12 @@ public class HomeController implements Initializable {
         return book_panel;
     }
 
+    /**
+     * Tworzy widok pojedynczej książki.
+     *
+     * @param book Obiekt książki do wyświetlenia.
+     * @return Węzeł reprezentujący pojedynczą książkę.
+     */
     private VBox createBookBox(Book book) {
         VBox box = new VBox(4);
         Label titleLabel = new Label(book.getTitle());

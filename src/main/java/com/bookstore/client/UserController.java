@@ -29,6 +29,9 @@ import java.util.function.UnaryOperator;
 import static com.bookstore.MessageType.SERVER_MESSAGE_ERROR;
 import static com.bookstore.MessageType.SERVER_MESSAGE_SUCCES;
 
+/**
+ * Kontroler obsługujący interakcje użytkownika z panelem użytkownika w aplikacji.
+ */
 public class UserController implements Initializable {
     @FXML
     private Label firstNameLabel;
@@ -86,10 +89,21 @@ public class UserController implements Initializable {
     private static final double SLIDING_PANEL2_HIDDEN_Y = 600.0;
     private static final double SLIDING_PANEL2_SHOWN_Y = 300.0;
 
+    /**
+     * Ustawia połączenie serwera dla kontrolera.
+     *
+     * @param serverConnection Połączenie z serwerem.
+     */
     public void setServerConnection(ServerConnection serverConnection) {
         this.serverConnection = serverConnection;
     }
 
+    /**
+     * Metoda inicjalizująca kontroler po załadowaniu widoku.
+     *
+     * @param url            Adres URL widoku.
+     * @param resourceBundle Zasoby powiązane z widokiem.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UnaryOperator<TextFormatter.Change> postalCodeFilter = change -> {
@@ -104,6 +118,12 @@ public class UserController implements Initializable {
         setDefaultDetails();
     }
 
+    /**
+     * Obsługuje aktualizację hasła użytkownika.
+     *
+     * @throws IOException            Wyjątek, jeśli wystąpi problem z połączeniem.
+     * @throws ClassNotFoundException Wyjątek, jeśli wystąpi problem z klasą.
+     */
     @FXML
     public void updatePassword() throws IOException, ClassNotFoundException {
         String oldPassword = oldPasswordField.getText();
@@ -140,6 +160,12 @@ public class UserController implements Initializable {
         }
     }
 
+    /**
+     * Obsługuje aktualizację danych użytkownika.
+     *
+     * @throws IOException            Wyjątek, jeśli wystąpi problem z połączeniem.
+     * @throws ClassNotFoundException Wyjątek, jeśli wystąpi problem z klasą.
+     */
     @FXML
     public void updateDetails() throws IOException, ClassNotFoundException {
         String firstName = this.firstNameTextField.getText();
@@ -150,7 +176,6 @@ public class UserController implements Initializable {
         String postalCode = this.postalCodeTextField.getText();
         String street = this.streetNameTextField.getText();
         String houseNumber = this.houseNumberTextField.getText();
-        int adresId = LoggedUser.getInstance().getAdresId();
 
         if (login.contains(" ")) {
             errorLabel.setText("Login zawiera spację!");
@@ -181,6 +206,9 @@ public class UserController implements Initializable {
         }
     }
 
+    /**
+     * Ustawia domyślne dane użytkownika w formularzu.
+     */
     public void setDefaultDetails() {
         firstNameLabel.setText("Imię: " + LoggedUser.getInstance().getFirstName());
         lastNameLabel.setText("Nazwisko: " + LoggedUser.getInstance().getLastName());
@@ -201,6 +229,9 @@ public class UserController implements Initializable {
         houseNumberTextField.setText(LoggedUser.getInstance().getHouseNumber());
     }
 
+    /**
+     * Obsługuje animację przesuwania panelu zmiany hasła.
+     */
     @FXML
     public void toggleSlidingPanel2() {
         Timeline timeline = new Timeline();
@@ -218,6 +249,9 @@ public class UserController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Obsługuje animację przesuwania panelu zmiany danych użytkownika.
+     */
     @FXML
     public void toggleSlidingPanel() {
         Timeline timeline = new Timeline();
@@ -235,6 +269,12 @@ public class UserController implements Initializable {
         timeline.play();
     }
 
+    /**
+     * Przełącza widok na ekran główny po naciśnięciu przycisku "Powrót".
+     *
+     * @param e Zdarzenie akcji przycisku.
+     * @throws IOException Wyjątek, jeśli wystąpi problem z ładowaniem widoku.
+     */
     @FXML
     public void switchToHome(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
